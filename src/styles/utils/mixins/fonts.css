@@ -1,0 +1,7 @@
+/* Базовый миксин для стиля текста */
+@define-mixin text-style $font-size, $line-height, $font-weight {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  letter-spacing: -0.02rem;
+}

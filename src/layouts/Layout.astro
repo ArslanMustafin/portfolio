@@ -31,34 +31,8 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global>
-  :root {
-    --primary-black: #000000;
-    --primary-neutral: #404040;
-    --primary-white: #ffffff;
-    --zinc-100: #f4f4f5;
-    --zinc-200: #e4e4e7;
-    --zinc-300: #d4d4d8;
-    --zinc-500: #71717a;
-    --zinc-800: #27272a;
-    --error-500: #ef4444;
-  }
-  html {
-    /* font-family: system-ui, sans-serif; */
-    background: #13151a;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
+  @import "../styles/utils/mixins/media-query.css";
+  @import "../styles/utils/variables/index.css";
 
-  body {
-    font-family: "Sora Variable", sans-serif;
-  }
+  @import "../styles/global.css";
 </style>

@@ -1,0 +1,269 @@
+---
+export interface Props {
+  // Ограничение типов тега
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  // Предопределенные стили текста
+  variant:
+    | "display-text"
+    | "outlined-l"
+    | "outlined-m"
+    | "sub-heading"
+    | "heading-h1"
+    | "heading-h2"
+    | "heading-h3"
+    | "heading-h4"
+    | "heading-h5"
+    | "heading-h6"
+    | "paragraph-p1"
+    | "paragraph-p2"
+    | "paragraph-p3"
+    | "button-text"
+    | "button-text-2"
+    | "underlined-text";
+  // Варианты толщины текста
+  weight?: "regular" | "semi-bold" | "bold" | "extra-bold";
+  // дополнительный класс
+  class?: string;
+}
+
+const {
+  tag = "p",
+  variant,
+  weight = "regular",
+  class: className,
+} = Astro.props as Props;
+const Tag = tag as keyof HTMLElementTagNameMap;
+const style = `${variant}-${weight}`;
+---
+
+<Tag class:list={[style, className]}>
+  <slot />
+</Tag>
+
+<style>
+  @import "../styles/utils/mixins/fonts.css";
+
+  /* Стили для Display Text */
+  .display-text-regular {
+    @mixin text-style 48px, 56px, 400;
+  }
+  .display-text-semi-bold {
+    @mixin text-style 48px, 56px, 600;
+  }
+  .display-text-bold {
+    @mixin text-style 48px, 56px, 700;
+  }
+  .display-text-extra-bold {
+    @mixin text-style 48px, 56px, 800;
+  }
+
+  /* Стили для Outlined Text (L) */
+  .outlined-l-regular {
+    @mixin text-style 48px, 56px, 400;
+  }
+  .outlined-l-semi-bold {
+    @mixin text-style 48px, 56px, 600;
+  }
+  .outlined-l-bold {
+    @mixin text-style 48px, 56px, 700;
+  }
+  .outlined-l-extra-bold {
+    @mixin text-style 48px, 56px, 800;
+  }
+
+  /* Стили для Outlined Text (M) */
+  .outlined-m-regular {
+    @mixin text-style 28px, 38px, 400;
+  }
+  .outlined-m-semi-bold {
+    @mixin text-style 28px, 38px, 600;
+  }
+  .outlined-m-bold {
+    @mixin text-style 28px, 38px, 700;
+  }
+  .outlined-m-extra-bold {
+    @mixin text-style 28px, 38px, 800;
+  }
+
+  /* Стили для Sub Heading */
+  .sub-heading-regular {
+    @mixin text-style 40px, 48px, 400;
+  }
+  .sub-heading-semi-bold {
+    @mixin text-style 40px, 48px, 600;
+  }
+  .sub-heading-bold {
+    @mixin text-style 40px, 48px, 700;
+  }
+  .sub-heading-extra-bold {
+    @mixin text-style 40px, 48px, 800;
+  }
+
+  /* Стили для Heading H1 */
+  .heading-h1-regular {
+    @mixin text-style 36px, 46px, 400;
+  }
+  .heading-h1-semi-bold {
+    @mixin text-style 36px, 46px, 600;
+  }
+  .heading-h1-bold {
+    @mixin text-style 36px, 46px, 700;
+  }
+  .heading-h1-extra-bold {
+    @mixin text-style 36px, 46px, 800;
+  }
+
+  /* Стили для Heading H2 */
+  .heading-h2-regular {
+    @mixin text-style 33px, 40px, 400;
+  }
+  .heading-h2-semi-bold {
+    @mixin text-style 33px, 40px, 600;
+  }
+  .heading-h2-bold {
+    @mixin text-style 33px, 40px, 700;
+  }
+  .heading-h2-extra-bold {
+    @mixin text-style 33px, 40px, 800;
+  }
+
+  /* Стили для Heading H3 */
+  .heading-h3-regular {
+    @mixin text-style 28px, 32px, 400;
+  }
+  .heading-h3-semi-bold {
+    @mixin text-style 28px, 32px, 600;
+  }
+  .heading-h3-bold {
+    @mixin text-style 28px, 32px, 700;
+  }
+  .heading-h3-extra-bold {
+    @mixin text-style 28px, 32px, 800;
+  }
+
+  /* Стили для Heading H4 */
+  .heading-h4-regular {
+    @mixin text-style 24px, 28px, 400;
+  }
+  .heading-h4-semi-bold {
+    @mixin text-style 24px, 28px, 600;
+  }
+  .heading-h4-bold {
+    @mixin text-style 24px, 28px, 700;
+  }
+  .heading-h4-extra-bold {
+    @mixin text-style 24px, 28px, 800;
+  }
+
+  /* Стили для Heading H5 */
+  .heading-h5-regular {
+    @mixin text-style 20px, 24px, 400;
+  }
+  .heading-h5-semi-bold {
+    @mixin text-style 20px, 24px, 600;
+  }
+  .heading-h5-bold {
+    @mixin text-style 20px, 24px, 700;
+  }
+  .heading-h5-extra-bold {
+    @mixin text-style 20px, 24px, 800;
+  }
+
+  /* Стили для Heading H6 */
+  .heading-h6-regular {
+    @mixin text-style 16px, 24px, 400;
+  }
+  .heading-h6-semi-bold {
+    @mixin text-style 16px, 24px, 600;
+  }
+  .heading-h6-bold {
+    @mixin text-style 16px, 24px, 700;
+  }
+  .heading-h6-extra-bold {
+    @mixin text-style 16px, 24px, 800;
+  }
+
+  /* Стили для Paragraph P1 */
+  .paragraph-p1-regular {
+    @mixin text-style 20px, 24px, 400;
+  }
+  .paragraph-p1-semi-bold {
+    @mixin text-style 20px, 24px, 600;
+  }
+  .paragraph-p1-bold {
+    @mixin text-style 20px, 24px, 700;
+  }
+  .paragraph-p1-extra-bold {
+    @mixin text-style 20px, 24px, 800;
+  }
+
+  /* Стили для Paragraph P2 */
+  .paragraph-p2-regular {
+    @mixin text-style 16px, 20px, 400;
+  }
+  .paragraph-p2-semi-bold {
+    @mixin text-style 16px, 20px, 600;
+  }
+  .paragraph-p2-bold {
+    @mixin text-style 16px, 20px, 700;
+  }
+  .paragraph-p2-extra-bold {
+    @mixin text-style 16px, 20px, 800;
+  }
+
+  /* Стили для Paragraph P3 */
+  .paragraph-p3-regular {
+    @mixin text-style 12px, 16px, 400;
+  }
+  .paragraph-p3-semi-bold {
+    @mixin text-style 12px, 16px, 600;
+  }
+  .paragraph-p3-bold {
+    @mixin text-style 12px, 16px, 700;
+  }
+  .paragraph-p3-extra-bold {
+    @mixin text-style 12px, 16px, 800;
+  }
+
+  /* Стили для Button Text */
+  .button-text-regular {
+    @mixin text-style 20px, 24px, 400;
+  }
+  .button-text-semi-bold {
+    @mixin text-style 20px, 24px, 600;
+  }
+  .button-text-bold {
+    @mixin text-style 20px, 24px, 700;
+  }
+  .button-text-extra-bold {
+    @mixin text-style 20px, 24px, 800;
+  }
+
+  /* Стили для Button Text 2 */
+  .button-text-2-regular {
+    @mixin text-style 16px, 24px, 400;
+  }
+  .button-text-2-semi-bold {
+    @mixin text-style 16px, 24px, 600;
+  }
+  .button-text-2-bold {
+    @mixin text-style 16px, 24px, 700;
+  }
+  .button-text-2-extra-bold {
+    @mixin text-style 16px, 24px, 800;
+  }
+
+  /* Стили для Underlined Text */
+  .underlined-text-regular {
+    @mixin text-style 12px, 16px, 400;
+  }
+  .underlined-text-semi-bold {
+    @mixin text-style 12px, 16px, 600;
+  }
+  .underlined-text-bold {
+    @mixin text-style 12px, 16px, 700;
+  }
+  .underlined-text-extra-bold {
+    @mixin text-style 12px, 16px, 800;
+  }
+</style>

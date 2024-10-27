@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "../images/logo.svg";
+import Text from "./Text.astro";
+---
+
+<a href="/" class="logo">
+  <Image
+    src={logoImage}
+    alt="logo image"
+    width="40"
+    height="40"
+    class="logo__image"
+  />
+  <Text tag="span" variant="heading-h5" weight="bold">Portfolio</Text>
+</a>
+
+<style>
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    text-decoration: none;
+    color: var(--primary-black);
+  }
+
+  @media (--medium-screen) {
+    .logo {
+      gap: var(--spacing-sm);
+    }
+
+    .logo__image {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
