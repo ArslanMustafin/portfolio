@@ -9,7 +9,7 @@ export interface Props {
 const { link } = Astro.props;
 ---
 
-<a href={link} class="header-link">
+<a href={'/portfolio' + link} class="header-link">
   <Text tag="span" variant="heading-h5" weight="semi-bold">
     <slot />
   </Text>
