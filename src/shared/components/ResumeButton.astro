@@ -1,0 +1,59 @@
+---
+import Text from "./Text.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<a href="/resume.pdf" class="resume-download">
+  <div class="resume-download__text">
+    <Text tag="span" variant="button-text-2" weight="semi-bold"> Resume </Text>
+  </div>
+  <Icon name="download" />
+</a>
+
+<style scoped>
+  .resume-download {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    padding: calc(var(--spacing-md) - 1px) calc(var(--spacing-l) - 2px);
+    border-radius: 4px;
+    border: 2px solid var(--primary-black);
+    transition:
+      background-color 0.24s ease-in-out,
+      color 0.24s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+  }
+
+  .resume-download:active {
+    transition: none;
+    background-color: var(--primary-white);
+    color: var(--primary-black);
+  }
+
+  .resume-download:hover {
+    background-color: var(--primary-neutral);
+  }
+
+  [data-icon] {
+    font-size: 20px;
+  }
+
+  @media (pointer: coarse) {
+    .resume-download:hover {
+      background-color: var(--primary-black);
+    }
+
+    .resume-download:active {
+      background-color: var(--primary-white);
+      color: var(--primary-black);
+    }
+  }
+
+  @media (--small-screen) {
+    .resume-download__text {
+      display: none;
+    }
+  }
+</style>

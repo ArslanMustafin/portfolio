@@ -1,0 +1,27 @@
+---
+const { ...props } = Astro.props;
+---
+
+<div class:list={["container", props.class]} {...props}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xxl);
+  }
+
+  @media (--large-screen) {
+    .container {
+      padding: 0 var(--spacing-lg);
+    }
+  }
+
+  @media (--medium-screen) {
+    .container {
+      padding: 0 var(--spacing-md);
+    }
+  }
+</style>

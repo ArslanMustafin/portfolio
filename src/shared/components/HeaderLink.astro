@@ -1,0 +1,47 @@
+---
+import Text from "./Text.astro";
+
+export interface Props {
+  // ссылка
+  link: string;
+}
+
+const { link } = Astro.props;
+---
+
+<a href={link} class="header-link">
+  <Text tag="span" variant="heading-h5" weight="semi-bold">
+    <slot />
+  </Text>
+</a>
+
+<style scoped>
+  .header-link {
+    position: relative;
+    color: var(--primary-black);
+    text-decoration: none;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .header-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-black);
+    transition:
+      width 0.3s ease-in-out,
+      left 0.3s ease-in-out;
+  }
+
+  .header-link:hover {
+    opacity: 0.6;
+  }
+
+  .header-link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+</style>

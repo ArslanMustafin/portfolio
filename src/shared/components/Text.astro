@@ -22,25 +22,18 @@ export interface Props {
     | "underlined-text";
   // Варианты толщины текста
   weight?: "regular" | "semi-bold" | "bold" | "extra-bold";
-  // дополнительный класс
-  class?: string;
 }
 
-const {
-  tag = "p",
-  variant,
-  weight = "regular",
-  class: className,
-} = Astro.props as Props;
+const { tag = "p", variant, weight = "regular" } = Astro.props as Props;
 const Tag = tag as keyof HTMLElementTagNameMap;
 const style = `${variant}-${weight}`;
 ---
 
-<Tag class:list={[style, className]}>
+<Tag class={style}>
   <slot />
 </Tag>
 
-<style>
+<style scoped>
   @import "@styles/utils/mixins/fonts.css";
 
   /* Стили для Display Text */

@@ -1,0 +1,118 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BurgerMenuButton from "@shared/components/BurgerMenuButton.astro";
+import HeaderLink from "@shared/components/HeaderLink.astro";
+import Logo from "@shared/components/Logo.astro";
+import ResumeButton from "@shared/components/ResumeButton.astro";
+---
+
+<header class="header">
+  <BaseLayout class="header__container">
+    <Logo />
+
+    <nav class="header__nav" id="header-menu">
+      <HeaderLink link="/#about">About Me</HeaderLink>
+      <HeaderLink link="/#skills">Skills</HeaderLink>
+      <HeaderLink link="/#project">Project</HeaderLink>
+      <HeaderLink link="/#contact">Contact me</HeaderLink>
+    </nav>
+
+    <div class="header__hamburger">
+      <BurgerMenuButton id="header-hamburger" />
+    </div>
+
+    <ResumeButton />
+  </BaseLayout>
+</header>
+
+<script>
+  let isOpenMenu = false;
+
+  const button = document.getElementById(
+    "header-hamburger",
+  ) as HTMLButtonElement;
+  const menu = document.getElementById("header-menu") as HTMLElement;
+
+  function openMenu() {
+    button.classList.add("is-active");
+    menu.classList.add("open");
+
+    isOpenMenu = true;
+  }
+  function closeMenu() {
+    button.classList.remove("is-active");
+    menu.classList.remove("open");
+
+    isOpenMenu = false;
+  }
+
+  button.addEventListener("click", () => {
+    !isOpenMenu ? openMenu() : closeMenu();
+  });
+
+  window.addEventListener("hashchange", function () {
+    closeMenu();
+  });
+</script>
+
+<style>
+  .header {
+    position: relative;
+    padding: var(--spacing-xl) 0;
+  }
+  .header__container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+  .header__nav {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xxl);
+  }
+
+  .header__hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__nav a {
+    margin: var(--spacing-md) 0;
+  }
+
+  @media (--medium-screen) {
+    .header__nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--background);
+      padding: var(--spacing-lg);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition:
+        transform 0.35s ease-in-out,
+        opacity 0.35s ease-in-out;
+    }
+
+    .header__nav.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .header__hamburger {
+      display: flex;
+    }
+
+    @starting-style {
+      .header__nav.open {
+        opacity: 0;
+      }
+    }
+  }
+</style>

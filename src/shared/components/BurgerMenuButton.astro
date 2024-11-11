@@ -1,0 +1,56 @@
+---
+type PropsType = {
+  id: string;
+};
+
+const { id } = Astro.props as PropsType;
+---
+
+<button class={"hamburger"} id={id}>
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
+
+<style scoped>
+  .hamburger {
+    background: none;
+    border: none;
+    outline: none;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hamburger:hover {
+    cursor: pointer;
+  }
+
+  .hamburger.is-active {
+    transform: rotate(45deg);
+  }
+
+  .hamburger.is-active .line {
+    width: 35px;
+  }
+
+  .hamburger.is-active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.is-active .line:nth-child(1) {
+    transform: translateY(13px);
+  }
+
+  .hamburger.is-active .line:nth-child(3) {
+    transform: translateY(-13px) rotate(90deg);
+  }
+
+  .hamburger .line {
+    width: 50px;
+    height: 5px;
+    background-color: var(--primary-black);
+    display: block;
+    margin: 8px auto;
+    transition: all 0.3s ease-in-out;
+  }
+</style>
